@@ -7,17 +7,18 @@ __copyright__   = "Copyright 2020, Davenport Central Robotics Teams"
 # Import all Necessary Classes
 import serial
 import math
+import functions
 
 # Define the operating modes for the motor controller
 forwardMode     = 8
+backwardMode    = 9
 leftMode        = 11
 rightMode       = 10
 
 # Open a serial terminal with the port 'dev/tty0'
 drive = serial.Serial(port='/dev/tty0')
 
-# Print the name of the port that was connected to for verification
-print(drive.name)
-
 # Used by the Sabertooth motor controller to autodetect the Baud Rate used by the transmitting device
 drive.write(170)
+
+functions.driveForward(130, 127, 'forward', 0)
