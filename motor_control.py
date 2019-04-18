@@ -55,7 +55,7 @@ def driveForward(address, speedByte, direction, heading):
     drive.write(speedByte)
     # Calculate and send the checksum for the controller, which is address + command + data)
     checksumDirection = address + driveMode + speedByte
-    drive.write(checksum)
+    drive.write(checksumDirection)
 
     """
     Heading Packet
@@ -75,7 +75,8 @@ def driveForward(address, speedByte, direction, heading):
 
     checksumHeading = address + turnMode + abs(heading)
 
-    drive.write(heading)
+    drive.write(checksumHeading)
 
     print('Success!')
-    # Test
+
+driveForward(130, 127, 'forward', 127)
