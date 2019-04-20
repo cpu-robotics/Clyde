@@ -7,8 +7,9 @@ Uses parameters:
     direction:  Either 'forward' or 'backward', specifing wither to drive forward or backward
     heading:    Value between 127 and -127 specifing what direction the vehicle should be headed - + = Left, - = Right
 """
-def driveForward(address, speedByte, direction, heading):
+def trackDrive(address, speedByte, direction, heading):
 
+    # Import the motor control class so that the messages can be sent to the serial port
     import motor_control
     drive = motor_control.drive
 
@@ -17,7 +18,7 @@ def driveForward(address, speedByte, direction, heading):
     backwardMode    = 9
     leftMode        = 11
     rightMode       = 10
-    
+
     """
     Direction Packet
     """
@@ -28,14 +29,17 @@ def driveForward(address, speedByte, direction, heading):
         driveMode = forwardMode
     elif direction == 'backward':
         driveMode = backwardMode
+
     # If the direction was not forward or backward, throw an error
     else:
         raise ValueError('Direction was not forward or backward')
 
     # Send the driveMode to the controller
     drive.write(driveMode)
+
     # Send the byte containing the desired speed to the controller
     drive.write(speedByte)
+
     # Calculate and send the checksum for the controller, which is address + command + data)
     checksumDirection = address + driveMode + speedByte
     drive.write(checksumDirection)
