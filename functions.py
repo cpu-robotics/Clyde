@@ -1,21 +1,3 @@
-#!/usr/bin/env python
-"""motor_control.py: Motor control via a Sabertooth 2x25 motor controller """
-
-__author__      = "Nick Vazquez"
-__copyright__   = "Copyright 2020, Davenport Central Robotics Teams"
-
-# Import all Necessary Classes
-import serial
-import math
-
-# Open a serial terminal with the port 'dev/tty0'
-drive = serial.Serial(port='/dev/tty0')
-
-# Used by the Sabertooth motor controller to autodetect the Baud Rate used by the transmitting device
-drive.write(170)
-
-<<<<<<< HEAD
-
 """
 driveForward: Function for driving the vehicle forward
 
@@ -25,7 +7,17 @@ Uses parameters:
     direction:  Either 'forward' or 'backward', specifing wither to drive forward or backward
     heading:    Value between 127 and -127 specifing what direction the vehicle should be headed - + = Left, - = Right
 """
-def driveForward(address, speedByte, direction, heading):
+def trackDrive(address, speedByte, direction, heading):
+
+    # Import the motor control class so that the messages can be sent to the serial port
+    import motor_control
+    drive = motor_control.drive
+
+    # Define the operating modes for the motor controller
+    forwardMode     = 8
+    backwardMode    = 9
+    leftMode        = 11
+    rightMode       = 10
 
     """
     Direction Packet
@@ -37,14 +29,17 @@ def driveForward(address, speedByte, direction, heading):
         driveMode = forwardMode
     elif direction == 'backward':
         driveMode = backwardMode
+
     # If the direction was not forward or backward, throw an error
     else:
         raise ValueError('Direction was not forward or backward')
 
     # Send the driveMode to the controller
     drive.write(driveMode)
+
     # Send the byte containing the desired speed to the controller
     drive.write(speedByte)
+
     # Calculate and send the checksum for the controller, which is address + command + data)
     checksumDirection = address + driveMode + speedByte
     drive.write(checksumDirection)
@@ -70,8 +65,3 @@ def driveForward(address, speedByte, direction, heading):
     drive.write(checksumHeading)
 
     print('Success!')
-
-driveForward(130, 127, 'forward', 127)
-=======
-functions.trackDrive(130, 127, 'forward', 0)
->>>>>>> c33e59fbed742a8b852dec2298d2320b1666a686
