@@ -8,8 +8,6 @@ import functions
 
 drive = serial.Serial(port='/dev/tty0')
 
-print(drive.name)
-
 drive.write(170)
 
 try:
