@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+"""
+functions.py: Contains all necessary functions used in:
+    motor_control.py
+    teleop_control.py
+"""
+
+__author__      = "Nick Vazquez"
+__copyright__   = "Copyright 2020, Davenport Central Robotics Teams"
+
 """
 driveForward: Function for driving the vehicle forward
 
