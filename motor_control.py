@@ -7,7 +7,6 @@ __copyright__   = "Copyright 2020, Davenport Central Robotics Teams"
 # Import all Necessary Classes
 import serial
 import math
-import functions
 
 # Open a serial terminal with the port 'dev/tty0'
 drive = serial.Serial(port='/dev/tty0')
