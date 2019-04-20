@@ -1,6 +1,3 @@
-
-# drive = motor_control.drive
-
 """
 driveForward: Function for driving the vehicle forward
 
@@ -12,6 +9,15 @@ Uses parameters:
 """
 def driveForward(address, speedByte, direction, heading):
 
+    import motor_control
+    drive = motor_control.drive
+
+    # Define the operating modes for the motor controller
+    forwardMode     = 8
+    backwardMode    = 9
+    leftMode        = 11
+    rightMode       = 10
+    
     """
     Direction Packet
     """

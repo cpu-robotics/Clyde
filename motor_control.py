@@ -9,12 +9,6 @@ import serial
 import math
 import functions
 
-# Define the operating modes for the motor controller
-forwardMode     = 8
-backwardMode    = 9
-leftMode        = 11
-rightMode       = 10
-
 # Open a serial terminal with the port 'dev/tty0'
 drive = serial.Serial(port='/dev/tty0')
 
