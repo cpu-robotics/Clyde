@@ -13,3 +13,5 @@ drive = serial.Serial(port='/dev/tty0')
 
 # Used by the Sabertooth motor controller to autodetect the Baud Rate used by the transmitting device
 drive.write(170)
+
+functions.trackDrive(130, 127, 'forward', 0)
