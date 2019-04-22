@@ -9,6 +9,9 @@ import serial
 import math
 import functions
 
+# Used for the verification of the baud rate by the motor controller
+rateVerify = '170'
+
 # Open a serial terminal with the port 'dev/tty0'
 drive = serial.Serial(port='/dev/tty0')
 
@@ -16,6 +19,6 @@ drive = serial.Serial(port='/dev/tty0')
 print(drive.name)
 
 # Used by the Sabertooth motor controller to autodetect the Baud Rate used by the transmitting device
-drive.write(170)
+drive.write(rateVerify)
 
 functions.trackDrive(130, 127, 'forward', 127)
