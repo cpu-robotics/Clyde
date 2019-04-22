@@ -10,7 +10,7 @@ import math
 import functions
 
 # Used for the verification of the baud rate by the motor controller
-rateVerify = "170"
+rateVerify = '170'
 
 # Open a serial terminal with the port 'dev/tty0'
 drive = serial.Serial(port='/dev/tty0')
